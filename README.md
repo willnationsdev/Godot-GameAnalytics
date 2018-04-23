@@ -23,35 +23,34 @@ USAGE INSTRUCTIONS:
 . Add that to your main .gd:
 
 ```python
-var GAs = load("res://GameAnalytics.gd")
-var GA = GAs.new()
+extends Node
 
 func _ready():
-  GA.game_key = <your_game_key_supplied_by_GameAnalytics>
-  GA.secret_key = <your_secret_key_supplied_by_GameAnalytics>
-  GA.base_url = "http://api.gameanalytics.com"
+  GameAnalytics.game_key = <your_game_key_supplied_by_GameAnalytics>
+  GameAnalytics.secret_key = <your_secret_key_supplied_by_GameAnalytics>
+  GameAnalytics.base_url = "http://api.gameanalytics.com"
 
   # Run once per session
-  init_response = GA.request_init()
+  init_response = GameAnalytics.request_init()
 
   # Add events to queue
-  GA.add_to_event_queue(GA.get_test_design_event("player:new_level", 1))
-  GA.add_to_event_queue(GA.get_test_design_event("player:new_level", 2))
+  GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("player:new_level", 1))
+  GameAnalytics.add_to_event_queue(GameAnalytics.get_test_design_event("player:new_level", 2))
 
   # Submit events and flush queue - return code will indicate success (200) or failure (400, 401, 404)
-  var returned = GA.submit_events()
+  var returned = GameAnalytics.submit_events()
 ```
 
 Study GameAnalytics.gd and GameAnalytics REST API page to understand what else can be submitted.
 
-NOTE: While testing on my Windows machine, GameAnalytics refused "Windows" as a valid os/platform, so I put this code before GA.request_init() to work around that. YMMV
+NOTE: While testing on my Windows machine, GameAnalytics refused "Windows" as a valid os/platform, so I put this code before GameAnalytics.request_init() to work around that. YMMV
 
 ```python
-	if GA.platform == "Windows":
-		GA.platform = "android"
+	if GameAnalytics.platform == "Windows":
+		GameAnalytics.platform = "android"
 
-	if GA.os_version == "Windows":
-		GA.os_version = "android 4.4.4"
+	if GameAnalytics.os_version == "Windows":
+		GameAnalytics.os_version = "android 4.4.4"
  ```
  
 TODO

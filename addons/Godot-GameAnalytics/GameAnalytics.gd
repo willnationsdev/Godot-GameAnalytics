@@ -16,7 +16,7 @@ extends Node
 8. submit events in queue
 """
 # From https://github.com/xsellier/godot-uuid
-const UUID = preload("res://uuid.gd")
+const UUID = preload("uuid/uuid.gd")
 # device information
 var DEBUG = false
 var returned
