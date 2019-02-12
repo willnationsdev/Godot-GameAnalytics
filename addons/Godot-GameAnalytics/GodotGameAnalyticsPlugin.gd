@@ -1,7 +1,8 @@
+tool
 extends EditorPlugin
 
 func _enter_tree():
-	autoload_add_singleton("GameAnalytics", "GameAnalytics.gd")
+	add_autoload_singleton("GameAnalytics", "res://addons/Godot-GameAnalytics/GameAnalytics.gd")
 
 func _exit_tree():
-	autoload_remove_singleton("GameAnalytics")
+	remove_autoload_singleton("GameAnalytics")
